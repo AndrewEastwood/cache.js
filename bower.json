@@ -1,5 +1,10 @@
 {
   "name": "cachejs",
   "license": "MIT",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "dependencies": {
+    "jquery": "~1.10.2",
+    "undersore": "~1.8.2",
+    "jquery.cookie": "~1.4.1"
+  }
 }
