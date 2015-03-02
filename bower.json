@@ -2,6 +2,7 @@
   "name": "cachejs",
   "license": "MIT",
   "main": "cache.js",
+  "version": "0.0.6",
   "ignore": [
     ".jshintrc",
     "**/*.txt"
