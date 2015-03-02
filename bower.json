@@ -6,5 +6,10 @@
   "ignore": [
     ".jshintrc",
     "**/*.txt"
-  ]
+  ],
+  dependencies: {
+    "jquery": "~1.10.2",
+    "underscore": "~1.8.2",
+    "jquery.cookie": "~1.4.1"
+  }
 }
