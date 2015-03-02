@@ -44,8 +44,18 @@ define(["jquery", "underscore", "jquery.cookie"], function ($, _) {
         localStorage.removeItem(key);
     }
 
-    Cache.set = function (key, data) {
-        var _wrapper = {d: data};
+    Cache.set = function (key, data, extend) {
+        var _wrapper = {d: null};
+        if (extend) {
+            var exData = Cache.get(key);
+            if (exData) {
+                _wrapper.d = _.extend(exData, data);
+            } else {
+                _wrapper.d = data;
+            }
+        } else {
+            _wrapper.d = data;
+        }
         if (localStorage && localStorage.setItem)
             Cache.saveInLocalStorage(key, _wrapper);
         else if ($.cookie)
