@@ -1,19 +1,19 @@
-define(["jquery", "underscore", "jquery.cookie"], function ($, _) {
+define(['jquery', 'underscore', 'jquery.cookie'], function ($, _) {
 
-    var _cache = {};
+    var cache = {};
 
     function Cache () {}
 
     Cache.setObject = function (name, object) {
-        _cache[name] = object;
+        cache[name] = object;
     }
 
     Cache.getObject = function (name) {
-        return _cache[name];
+        return cache[name];
     }
 
     Cache.deleteObject = function (name) {
-        delete _cache[name];
+        delete cache[name];
     }
 
     Cache.setCookie = function (key, jsonData, options) {
@@ -45,35 +45,35 @@ define(["jquery", "underscore", "jquery.cookie"], function ($, _) {
     }
 
     Cache.set = function (key, data, extend) {
-        var _wrapper = {d: null};
+        var wrapper = {d: null};
         if (extend) {
             var exData = Cache.get(key);
             if (exData) {
-                _wrapper.d = _.extend(exData, data);
+                wrapper.d = _.extend(exData, data);
             } else {
-                _wrapper.d = data;
+                wrapper.d = data;
             }
         } else {
-            _wrapper.d = data;
+            wrapper.d = data;
         }
         if (localStorage && localStorage.setItem)
-            Cache.saveInLocalStorage(key, _wrapper);
+            Cache.saveInLocalStorage(key, wrapper);
         else if ($.cookie)
-            Cache.setCookie(key, _wrapper);
+            Cache.setCookie(key, wrapper);
         else
-            Cache.setObject(key, _wrapper);
+            Cache.setObject(key, wrapper);
     }
 
     Cache.get = function (key) {
-        var _wrapper = null;
+        var wrapper = null;
         if (localStorage && localStorage.getItem)
-            _wrapper = Cache.getFromLocalStorage(key);
+            wrapper = Cache.getFromLocalStorage(key);
         else if ($.cookie)
-            _wrapper = Cache.getCookie(key);
+            wrapper = Cache.getCookie(key);
         else
-            _wrapper = Cache.getObject(key);
-        if (_wrapper && _wrapper.d)
-            return _wrapper.d;
+            wrapper = Cache.getObject(key);
+        if (wrapper && wrapper.d)
+            return wrapper.d;
     }
 
     Cache.getOnce = function (key) {
