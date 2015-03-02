@@ -1,7 +1,11 @@
 {
   "name": "cachejs",
   "license": "MIT",
-  "version": "0.0.1",
+  "main": "cache.js",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
   "dependencies": {
     "jquery": "~1.10.2",
     "undersore": "~1.8.2",
