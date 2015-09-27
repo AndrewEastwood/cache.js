@@ -29,6 +29,14 @@ define(['jquery', 'underscore', 'jquery.cookie'], function ($, _) {
         return val;
     }
 
+    Cache.getRawCookie = function (key) {
+        var prevState = $.cookie.json;
+        $.cookie.json = false;
+        var val = $.cookie(key);
+        $.cookie.json = prevState;
+        return val;
+    }
+
     Cache.deleteCookie = function (key) {
         Cache.setCookie(key, null, {expires: -1});
     }
